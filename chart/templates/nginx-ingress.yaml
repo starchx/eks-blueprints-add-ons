@@ -1,8 +1,8 @@
-{{- if and (.Values.nginx) (.Values.nginx.enable) -}}
+{{- if and (.Values.nginxIngress) (.Values.nginxIngress.enable) -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx 
+  name: nginx-ingress 
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io    
@@ -10,12 +10,12 @@ spec:
   project: default
   source:
     repoURL: {{ .Values.repoUrl }}
-    path: add-ons/nginx
+    path: add-ons/nginx-ingress
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
         nginx-ingress:
-          {{- .Values.nginx | toYaml | nindent 10 }}
+          {{- .Values.nginxIngress | toYaml | nindent 10 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
