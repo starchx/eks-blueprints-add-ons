@@ -19,8 +19,6 @@ spec:
       parameters:
       - name: cluster-autoscaler.awsRegion
         value: {{ .Values.region }}
-      - name: cluster-autoscaler.rbac.serviceAccount.name
-        value: {{ .Values.clusterAutoscaler.serviceAccountName }}
       - name: cluster-autoscaler.autoDiscovery.clusterName
         value: {{ .Values.clusterName }}
   destination:
