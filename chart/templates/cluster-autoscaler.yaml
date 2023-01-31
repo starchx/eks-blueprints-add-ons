@@ -14,8 +14,8 @@ spec:
     targetRevision: {{ .Values.targetRevision }}
     helm:
       values: |
-        appmesh-controller:
-          {{- .Values.appmeshController | toYaml | nindent 10 }}
+        cluster-autoscaler:
+          {{- .Values.clusterAutoscaler | toYaml | nindent 10 }}
       parameters:
       - name: cluster-autoscaler.awsRegion
         value: {{ .Values.region }}
