@@ -12,7 +12,10 @@ spec:
     repoURL: {{ .Values.repoUrl }}
     path: add-ons/cluster-autoscaler
     targetRevision: {{ .Values.targetRevision }}
-    helm: 
+    helm:
+      values: |
+        appmesh-controller:
+          {{- .Values.appmeshController | toYaml | nindent 10 }}
       parameters:
       - name: cluster-autoscaler.awsRegion
         value: {{ .Values.region }}
